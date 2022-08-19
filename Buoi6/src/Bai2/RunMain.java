@@ -28,7 +28,7 @@ public class RunMain {
                 case 3:
                     outputGiam(lists);break;
                 case 4:
-                    outputGiam(lists); break;
+                    outputTang(lists); break;
                 default:return;
             }
         }
@@ -65,12 +65,19 @@ public class RunMain {
         PhuongTien []p = new PhuongTien[lists.size()];
         for(int i=0;i< lists.size();i++){
             p[i] = new PhuongTien();
+            p[i] = lists.get(i);
         }
         for(int i=0;i<lists.size();i++){
-            p[i] = lists.get(i);
+            int m = 0;
             for(int j = i+1;j< lists.size();j++){
-                if(p[i].getThue()>lists.get(j).getThue()) p[i] = lists.get(i);
+                if(p[i].getThue()>p[j].getThue()){
+                    m = j;
+                }
             }
+            PhuongTien x = new PhuongTien();
+            x = p[i];
+            p[i] = p[m];
+            p[m] = x;
         }
         System.out.println("Danh sach sap xep xe theo thue giam: ");
         System.out.printf("%-15s%-15s%-15s%-15s%-15s\n","TenChuXe","LoaiXe","DungTich","GiaTien","Thue");
@@ -86,14 +93,21 @@ public class RunMain {
         PhuongTien []p = new PhuongTien[lists.size()];
         for(int i=0;i< lists.size();i++){
             p[i] = new PhuongTien();
+            p[i] = lists.get(i);
         }
         for(int i=0;i<lists.size();i++){
-            p[i] = lists.get(i);
+            int m = 0;
             for(int j = i+1;j< lists.size();j++){
-                if(p[i].getThue()<lists.get(j).getThue()) p[i] = lists.get(i);
+                if(p[i].getTrigia()<p[j].getTrigia()){
+                    m = j;
+                }
             }
+            PhuongTien x = new PhuongTien();
+            x = p[i];
+            p[i] = p[m];
+            p[m] = x;
         }
-        System.out.println("Danh sach sap xep xe theo thue giam: ");
+        System.out.println("Danh sach sap xep xe theo tri gia tang: ");
         System.out.printf("%-15s%-15s%-15s%-15s%-15s\n","TenChuXe","LoaiXe","DungTich","GiaTien","Thue");
         for(int i=0;i<lists.size();i++){
             p[i].output();
